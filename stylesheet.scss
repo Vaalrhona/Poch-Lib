@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+$globalFont: 'Source Sans Pro', sans-serif;
+$globalFontSize: 1em;
+$globalAlign: center;
+$buttonText: #FFFFFF;
+$standardButtonColor: #469487;
+$standardButtonHover : #38746A;
+$cancelButtonColor: #DF5A4B;
+$cancelButtonHover: #B9493D;
+$buttonPadding: 2% 3%;
+$bookDivBackground: #E0E0E0;
+
+body {
+    font-family: $globalFont;
+    font-size: $globalFontSize;
+    text-align: $globalAlign;
+}
+
+h2 {
+    display:block;
+    width: 100%;
+}
+
+button, input[type=submit] {
+    text-align: center;
+    background-color: $standardButtonColor;
+    color: $buttonText;
+    padding: $buttonPadding;
+    margin: 1%;
+    font-family: $globalFont;
+    font-size: larger;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    
+}
+
+button:hover, button:active, input[type=submit]:hover, input[type=submit]:active {
+    background-color: $standardButtonHover;
+}
+
+#cancel {
+    display: block;
+    background-color: $cancelButtonColor;
+}
+
+#cancel:hover, #cancel:active {
+    background-color: $cancelButtonHover;
+}
+
+label {
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+input {
+    display: block;
+    width: 100%;
+}
+
+.formButtons, input[type=submit] {
+    display: block;
+    margin-left:0;
+    width: 20%;
+}
+
+#results, .bookCollection {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    color: black;
+}
+.book {
+    background-color: $bookDivBackground;
+    font-size: smaller;
+    border: 1.5px solid #9E9E9E;
+    border-radius: 3px;
+    padding: 1% 1.5% 1% 1%;
+    margin: 1%;
+    width: 40%;
+    text-align: left;
+    font-size: x-small;
+}
+
+.book .bookTitle, .book .bookId {
+    font-weight: bolder;
+}
+
+.book .bookId, .book .bookAuthor {
+    font-style: italic;
+}
+
+.book .bookThumbnail {
+    display: flex;
+    vertical-align: bottom;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+    height: 100px;
+    width: 100px;
+    border-radius: 3px;
+    box-shadow:
+             0.2em 0.2em 0.8em rgba(0,0,0,0.3);
+}
+
+.bookmark {
+    float: right;
+    color: $standardButtonColor;
+    font-size: x-large;
+    cursor: pointer;
+}
