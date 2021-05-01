@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    //displays books previously registered during the session
     if(sessionStorage.getItem('books')){
         var books = JSON.parse(sessionStorage.getItem('books'));
         books.forEach(element => {
@@ -13,6 +15,8 @@ $(document).ready(function(){
     $('form').submit(getBooks());
     $('hr').after(searchResults);
     $('#searchDiv').hide();
+
+    //form sliding handling
     $('#addBook').click(function(){
         $('#searchDiv').slideDown();
         $('#addBook').fadeTo(100, 0);
@@ -23,7 +27,7 @@ $(document).ready(function(){
         $('#addBook').fadeTo(100, 1);
         $('#results').slideUp();
         $('#content').find('#resultsHR').remove();
-        history.pushState(null, "", location.href.split("?")[0]); //thanks stack overflow
+        history.pushState(null, '', location.href.split('?')[0]); //thanks stack overflow
     });
     var bookCollection = document.createElement('div');
     bookCollection.id = 'collection';
@@ -86,12 +90,14 @@ $(document).ready(function(){
     }
     function getBooks(){
         $('#results').empty();
+        //gets user input from URL
         var search = new URLSearchParams(window.location.search);
         var authorName = search.get('authorName');
         var bookTitle = search.get('bookTitle');
         var googleAPI = 'https://www.googleapis.com/books/v1/volumes?q='+bookTitle+'+'+authorName;
         if(authorName!=null&&bookTitle!=null){
             $.getJSON(googleAPI, function (response) {
+                //api call response
                 if(response.items!=undefined){
                     for (var i = 0; i < response.items.length; i++) {
                         var item = response.items[i];
@@ -116,6 +122,7 @@ $(document).ready(function(){
 
     function saveBook(book){
         if (storageAvailable('sessionStorage')) {
+            //retrieves array of books already saved and adds/removes the selected one + changes the icon
             var books = (sessionStorage.getItem('books')!=null)?JSON.parse(sessionStorage.getItem('books')):[];
             if(books!=null&&!books.includes(book)){
                 books.push(book);
@@ -139,21 +146,24 @@ $(document).ready(function(){
     }
 
     function renderBook(item, isNew){
+        //gets the books already saved for future action
         var books = JSON.parse(sessionStorage.getItem('books'));
-        if(item!=undefined){
+        if(item!=undefined){ //if the book had been correctly loaded from the api
             var bookDiv = document.createElement('div');
             bookDiv.classList = 'book';
             bookDiv.id = item.id+'div';
 
-            var bookMarkContainer = document.createElement('span');
+            var bookMarkContainer = document.createElement('span'); //to create the link, could've just used onclick though
             bookMarkContainer.id = item.id+'container';
             bookMarkContainer.setAttribute('onclick', 'saveBook("'+item.id+'")');
             var bookMark = document.createElement('i');
-            bookMark.id = item.id;
+            bookMark.id = item.id; // affects the book id to the bookmark for book handling
+            //if the book is the array of books already saved, affects the bin icon
             bookMark.classList = (books!=null&&books.includes(item.id))?'bookmark far fa-trash-alt':'bookmark fas fa-bookmark';
             bookMarkContainer.append(bookMark);
             bookDiv.append(bookMarkContainer);
 
+            //display stuff
             var title = document.createElement('p');
             title.classList = 'bookTitle';
             var bookName = (item.volumeInfo.title.length>50)?item.volumeInfo.title.substring(0,50)+'...':item.volumeInfo.title;
@@ -181,7 +191,7 @@ $(document).ready(function(){
             thumbnail.classList = 'bookThumbnail';
             thumbnail.src = (item.volumeInfo.imageLinks!=undefined)?item.volumeInfo.imageLinks.thumbnail:'unavailable.png';
             bookDiv.append(thumbnail);
-            if(isNew==true){
+            if(isNew==true){ //affects to the right div (is it a search or the list of books saved?)
                 $('#results').append(bookDiv);
             }
             else{
@@ -190,6 +200,7 @@ $(document).ready(function(){
         }
     }
 
+    //api call to get all the previously saved books with their id
     function getPreviousBook(id){
         var googleAPI = 'https://www.googleapis.com/books/v1/volumes/'+id;
         $.getJSON(googleAPI, function (item) {
@@ -197,6 +208,7 @@ $(document).ready(function(){
         })
     }
 
+    //checks if session storage works correctly
     function storageAvailable(type) {
         try {
             var storage = window[type],
