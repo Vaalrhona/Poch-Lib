@@ -16,6 +16,7 @@ $(document).ready(function(){
     $('#addBook').click(function(){
         $('#searchDiv').slideDown();
         $('#addBook').fadeTo(100, 0);
+        $('#cancel').width($('#submitButton').width());
       });
     $('#cancel').click(function(){
         $('#searchDiv').slideUp();
@@ -62,7 +63,7 @@ $(document).ready(function(){
 
     function createInputField(id, label){
         var inputDiv = document.createElement('div');
-        inputDiv.classList = 'form';
+        inputDiv.classList.add('form','searchInput');
         var inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.name = id;
@@ -79,10 +80,8 @@ $(document).ready(function(){
     }
 
     function createSubmitButton(){
-        var submitButton = document.createElement('input');
-        submitButton.classList = 'formButtons';
+        var submitButton = createButton('Rechercher', 'submitButton')
         submitButton.type = 'submit';
-        submitButton.value = 'Rechercher';
         return submitButton;
     }
     function getBooks(){

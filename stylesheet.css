@@ -10,7 +10,7 @@ h2 {
   width: 100%;
 }
 
-button, input[type=submit] {
+button, #submitButton {
   text-align: center;
   background-color: #469487;
   color: #FFFFFF;
@@ -23,7 +23,7 @@ button, input[type=submit] {
   cursor: pointer;
 }
 
-button:hover, button:active, input[type=submit]:hover, input[type=submit]:active {
+button:hover, button:active, #submitButton:hover, #submitButton:active {
   background-color: #38746A;
 }
 
@@ -44,13 +44,12 @@ label {
 
 input {
   display: block;
-  width: 100%;
+  width: 97%;
 }
 
-.formButtons, input[type=submit] {
+.formButtons, #submitButton {
   display: block;
   margin-left: 0;
-  width: 20%;
 }
 
 #results, .bookCollection {
@@ -107,4 +106,4 @@ input {
   color: #469487;
   font-size: x-large;
   cursor: pointer;
-}
+}/*# sourceMappingURL=stylesheet.css.map */
