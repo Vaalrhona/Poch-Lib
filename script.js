@@ -19,7 +19,7 @@ $(document).ready(function(){
     //form sliding handling
     $('#addBook').click(function(){
         $('#searchDiv').slideDown();
-        $('#addBook').fadeTo(100, 0);
+        $('#addBook').css('display','none');
         $('#cancel').width($('#submitButton').width());
       });
     $('#cancel').click(function(){
@@ -27,6 +27,8 @@ $(document).ready(function(){
         $('#addBook').fadeTo(100, 1);
         $('#results').slideUp();
         $('#content').find('#resultsHR').remove();
+        $('#bookTitle').attr('value','');
+        $('#authorName').attr('value','');
         history.pushState(null, '', location.href.split('?')[0]); //thanks stack overflow
     });
     var bookCollection = document.createElement('div');
@@ -71,6 +73,7 @@ $(document).ready(function(){
         var inputField = document.createElement('input');
         inputField.type = 'text';
         inputField.name = id;
+        inputField.id = id;
         inputField.required = true;
 
         var inputLabel = document.createElement('label');
@@ -94,6 +97,8 @@ $(document).ready(function(){
         var search = new URLSearchParams(window.location.search);
         var authorName = search.get('authorName');
         var bookTitle = search.get('bookTitle');
+        $('#bookTitle').attr('value', bookTitle);
+        $('#authorName').attr('value', authorName);
         var googleAPI = 'https://www.googleapis.com/books/v1/volumes?q='+bookTitle+'+'+authorName;
         if(authorName!=null&&bookTitle!=null){
             $.getJSON(googleAPI, function (response) {

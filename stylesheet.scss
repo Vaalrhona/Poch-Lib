@@ -8,7 +8,8 @@ $standardButtonColor: #469487;
 $standardButtonHover : #38746A;
 $cancelButtonColor: #DF5A4B;
 $cancelButtonHover: #B9493D;
-$buttonPadding: 2% 3%;
+$buttonPadding: 11px 30px;
+$buttonWidth: 200px;
 $bookDivBackground: #E0E0E0;
 
 body {
@@ -31,8 +32,9 @@ button, #submitButton {
     font-family: $globalFont;
     font-size: larger;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
+    width: $buttonWidth;
     
 }
 
