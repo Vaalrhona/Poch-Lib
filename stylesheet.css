@@ -14,7 +14,6 @@ button, #submitButton {
   text-align: center;
   background-color: #469487;
   color: #FFFFFF;
-  padding: 11px 30px;
   margin: 1%;
   font-family: "Source Sans Pro", sans-serif;
   font-size: larger;
@@ -22,6 +21,7 @@ button, #submitButton {
   border-radius: 5px;
   cursor: pointer;
   width: 200px;
+  height: 50px;
 }
 
 button:hover, button:active, #submitButton:hover, #submitButton:active {
@@ -54,9 +54,14 @@ input {
 }
 
 #results, .bookCollection {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
   color: black;
 }
@@ -82,6 +87,8 @@ input {
 }
 
 .book .bookThumbnail {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   vertical-align: bottom;
   margin-left: auto;
@@ -91,7 +98,8 @@ input {
   height: 100px;
   width: 100px;
   border-radius: 3px;
-  box-shadow: 0.2em 0.2em 0.8em rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0.2em 0.2em 0.8em rgba(0, 0, 0, 0.3);
+          box-shadow: 0.2em 0.2em 0.8em rgba(0, 0, 0, 0.3);
 }
 
 .bookmark {
